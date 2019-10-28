@@ -1,0 +1,21 @@
+.footer {
+    width: 80%;
+    margin: 1% 10%;
+    padding: 0.1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    bottom: 0;
+    position: fixed;
+    background-color: #cccccc4a;
+    border-radius: 1em;
+}
+
+.footItem {
+    color: white;
+}
+
+.footItem img {
+    width: 26px;
+}
