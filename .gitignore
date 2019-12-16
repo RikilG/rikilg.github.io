@@ -5,6 +5,9 @@
 ### MY IGNORES ###
 temp
 
+### Python ###
+__*
+
 ### Linux ###
 *~
 
