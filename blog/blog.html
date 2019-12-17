@@ -5,6 +5,7 @@
         <link charset="UTF-8" rel="stylesheet" href="blog.css" />
         <link charset="UTF-8" rel="stylesheet" href="../css/navbar.css" />
         <link charset="UTF-8" rel="stylesheet" href="../css/footer.css" />
+        <link rel="icon" href="../assets/icons/favicon.png" />
         <title>
             Welcome to Rikil's Blog
         </title>
@@ -22,5 +23,24 @@
             <div class="flexItem menuItem selected"><a href="../blog/index.html">Blog</a></div>
             <div class="flexItem space"></div>
         </div>
+
+        <!-- content -->
+        <div class="root">
+            <h1 class="titleCenter">Welcome to my Blog!</h1>
+            <h2 class="heading">Some of my writings:</h2>
+            <!-- <div id="sub-root">
+                <div id="category-explorer"></div>
+                <div id="category-pages"></div>
+            </div> -->
+            <div id="blog-pages" class="flex-div">
+                <template id="blog-page-template">
+                    <div class="flex-div-item" onclick="">
+                        <div class="blog-title"></div>
+                        <div class="blog-desc"></div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    <script charset="UTF-8" src="blog.js"></script>
     </body>
 </html>

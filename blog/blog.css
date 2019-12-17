@@ -30,6 +30,7 @@ a {
 
 .titleCenter {
     font-size: 2em;
+    margin-top: 1.3em;
     color: white;
     font-weight: bold;
     text-align: center;
@@ -37,12 +38,28 @@ a {
 }
 
 .heading {
-    font-size: 2em;
     color: rgb(71, 241, 37);
     font-weight: bold;
     font-style: italic;
-    border-bottom: 3px rgb(58, 197, 30) solid;
-    padding: 0.3em;
+    /* border-bottom: 3px rgb(58, 197, 30) solid; */
+    /* padding: 0.3em; */
+}
+
+#sub-root {
+    display: flex;
+    min-height: 68vh;
+}
+
+#category-explorer {
+    background-color: red;
+    display: inline;
+    flex-grow: 2;
+}
+
+#category-pages {
+    background-color: green;
+    display: inline;
+    flex-grow: 5;
 }
 
 .flex-div {
@@ -50,18 +67,37 @@ a {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    justify-content: center;
 }
 
 .flex-div-item {
-    background-color: rgb(76, 116, 235);
+    background-color: rgba(63, 96, 194, 0.931);
+    min-width: 15em;
+    min-height: 3em;
     border-radius: 0.5em;
-    margin: 1em;
-    padding: 1.8em;
-    font-weight: 400;
+    margin: 0.8em;
+    padding: 1em;
+    font-size: 1.2em;
     transition: 0.3s ease;
+    text-align: center;
+    color: white;
 }
 
 .flex-div-item:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     cursor: pointer;
+}
+
+.blog-title {
+    font-size: 1.1em;
+    color: rgba(0, 255, 0, 0.918);
+}
+
+.blog-desc {
+    color: white;
+}
+
+.root {
+    padding: 1em;
+    margin: 1em;
 }
