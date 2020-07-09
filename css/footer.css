@@ -1,15 +1,23 @@
+.footer-shell {
+    margin: 0.5rem;
+    z-index: 5;
+    right: 0;
+    bottom: 0;
+    background-color: #424242;
+    position: fixed;
+    transform: skew(30deg);
+    margin-right: 1rem;
+    background-color: #424242;
+    border: 0.1rem solid #1b1b1b;
+    filter: drop-shadow(0.5rem 0.5rem 0.25rem rgb(27,27,27))
+}
+
 .footer {
-    width: 80%;
-    margin: 1% 10%;
-    padding: 0.1em;
+    transform: skew(-30deg);
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: baseline;
-    bottom: 0;
-    position: fixed;
-    background-color: #cccccc4a;
-    border-radius: 1em;
+    align-items: center;
 }
 
 .footItem {
@@ -17,5 +25,16 @@
 }
 
 .footItem img {
-    width: 26px;
+    width: 1.6em;
+}
+
+.footItem img:hover {
+    border-bottom: 0.1rem solid #ff5200;
+}
+
+.smallItem {
+    margin: 0.25rem 0.1rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ff4200;
 }

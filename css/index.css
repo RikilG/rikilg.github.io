@@ -1,97 +1,185 @@
-html {
-    background-color: #202020;
-    background-image: linear-gradient(#666666, #202020);
-    background: url("../assets/img/wallpaper.jpg") no-repeat center center fixed;
-    background-size: cover;
-}
+/* color scheme:
+ * 
+ * Background: 252525
+ * Primary: 424242
+ *      light:  6d6d6d
+ *      dark:   1b1b1b
+ * Secondary: ff5200
+ *      light:  ff863c
+ *      dark:   c31200
+ * Text on primary and secondary: white & black
+ * Background color: b3e5fc
+ *
+ * navs:
+ * filter: drop-shadow(0.5rem 0.5rem 0.25rem rgb(27,27,27))
+ * cards:
+ * filter: drop-shadow(0.5rem 0.5rem 0.25rem rgb(27,27,27))
+ * pages:
+ * filter: drop-shadow(0.5rem 0.5rem 0.25rem rgb(27,27,27))
+ */
 
 body {
     display: flex;
     flex-direction: column;
     margin: 0;
+    background: #2a2a2a;
+    color: #ff5200;
 }
 
 a {
     text-decoration: none;
     color: inherit;
     transition: 0.5s;
+    outline: none;
+}
+
+#mainCanvas {
+    z-index: -10;
+    position: fixed;
 }
 
 .empty {
-    height: 5em;
+    height: 5rem;
+    background: transparent;
+}
+
+.shell {
+    transform: skew(30deg);
+    background-color: #424242;
+    filter: drop-shadow(0.5rem 0.5rem 0.25rem rgb(27,27,27));
+    margin: 0 4rem;
+}
+
+.shell-page {
+    /* transform: skew(5deg); */
+    background-color: #25252580;
+    filter: drop-shadow(0.5rem 0.5rem 0.25rem rgb(27,27,27));
+    margin: 5rem 3rem;
+    margin-bottom: 0;
+    border-radius: 0.5rem;
+    border-radius: 0.6rem;
+    padding: 1.5rem;
+}
+
+.shell .shell-correct {
+    transform: skew(-30deg);
+}
+
+.shell-page .shell-correct {
+    /* transform: skew(-5deg); */
 }
 
 #home-div {
     margin: 0;
-    padding: 1em;
+    padding: 1rem;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.page {
-    background-color: #00304a8d;
-    border-radius: 0.5em;
-    padding: 1em;
-    margin: 5em;
-}
-
 .titleCenter {
-    font-size: 2em;
-    color: white;
-    font-weight: bold;
+    padding: 0.3rem 1rem;
+    font-size: 2rem;
     text-align: center;
     font-style: italic;
 }
 
-.heading {
-    font-size: 2em;
-    color: rgb(71, 241, 37);
-    font-weight: bold;
-    font-style: italic;
-    border-bottom: 3px rgb(58, 197, 30) solid;
-    padding: 0.3em;
+#quoteMain {
+    display: inline;
 }
 
-#projects-div {
-    min-height: 100vh;
-    background-color: #d35400;
+.titleAuthor {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.3rem;
+    padding-left: 12rem;
+    padding-bottom: 0.3rem;
+}
+
+.heading {
+    font-size: 2rem;
+    color: #ff5200;
+    font-weight: bold;
+    font-style: italic;
+    border-bottom: 3px #ff5200 solid;
+    padding: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.subheading {
+    font-size: 1.5rem;
+    color: #ff5200;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0.2rem 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.subheading2 {
+    font-size: 1.2rem;
+    color: #ff5200;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0.2rem 0.7rem;
+    margin-top: 0.5rem;
+}
+
+.description {
+    padding: 0.2rem 1.5rem;
+    color: white;
+    margin: 0;
 }
 
 .flex-div {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-around; */
     flex-wrap: wrap;
     flex-direction: row;
 }
 
 .flex-div-item {
-    background-color: rgb(76, 116, 235);
-    border-radius: 0.5em;
-    margin: 0.5em;
-    padding: 1em;
+    width: 280px;
+    height: 80px;
+    background-color: #ff5200;
+    border-radius: 0.3rem;
+    margin: 0.5rem;
+    padding: 1rem;
     font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
     transition: 0.3s ease;
 }
 
 .flex-div-item:hover {
-    transform: scale(1.1);
+    transform: scale(1.03);
     cursor: pointer;
 }
 
-#contact-div {
-    min-height: 100vh;
-    background-color: #27ae60;
+.flex-item-small {
+    background-color: #c31200;
+    color: white;
+    width: 8rem;
+    border-radius: 0.25rem;
+    margin: 0.5rem 3rem;
+    padding: 0.8rem;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: 0.5s ease;
+    border: 0.2rem solid transparent;
 }
 
-#about-div {
-    min-height: 100vh;
-    background-color: #8e44ad;
+.flex-item-small:hover {
+    transform: scale(1.08);
+    border-bottom: 0.2rem solid #ff5200;
+    border-top: 0.2rem solid #ff5200;
+    transform: skew(5deg);
 }
 
-#thanks-div {
-    min-height: 100vh;
-    /* background-color: #2c3e50; */
+.repoDesc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 70%;
 }
