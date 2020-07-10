@@ -1,3 +1,29 @@
+// -------------------- Dynamic Load --------------------
+let skills = ["C", "C++", "Java", "Python", "HTML", "CSS", "JavaScript", "React", "Node", "Bash", "SQL"]
+let frameworks = ["Android Studio", "Eclipse", "Git", "GNU/Linux", "Electron"]
+document.getElementById('skills-flex').innerHTML = ""
+skills.forEach((skill) => {
+    let temp = document.createElement('div');
+    temp.classList.add('flex-dual-item-small')
+    temp.innerHTML = `
+    <div class="flex-item-small-content">${skill}</div>
+    <div class="flex-item-small-content-cover" ></div>
+    <div class="flex-item-small-caption-holder" ></div>
+    <div class="flex-item-small-content-end" ></div>`
+    document.getElementById('skills-flex').appendChild(temp)
+})
+document.getElementById('framework-flex').innerHTML = ""
+frameworks.forEach((framework) => {
+    let temp = document.createElement('div');
+    temp.classList.add('flex-dual-item-small')
+    temp.innerHTML = `
+    <div class="flex-item-small-content">${framework}</div>
+    <div class="flex-item-small-content-cover" ></div>
+    <div class="flex-item-small-caption-holder" ></div>
+    <div class="flex-item-small-content-end" ></div>`
+    document.getElementById('framework-flex').appendChild(temp)
+})
+
 // ----------------- Add random quote on home page --------------------
 
 var fetchedRepos = [];
@@ -9,6 +35,9 @@ let quotesList = [
     "A smooth sea never makes a skilled sailor.",
     "Imagination is more important than knowledge. For knowledge is limited, whereas imagination embraces the entire world, stimulating progress, giving birth to evolution. -Albert Einstein",
     "Stop complaining. Start creating. -Dale Patridge",
+    "Tell me and I forget. Show me and I remember. Involve me and I understand. -Chinese proverb",
+    "The only way of finding the limits of the possible is by going beyond them into the impossible.",
+    "You never know how strong you are until being strong is the only choice you have.",
 ]
 let quoteIndex = Math.floor(Math.random()*quotesList.length)
 let quote = quotesList[quoteIndex].split('-')
@@ -43,42 +72,43 @@ let username = "RikilG";
 let repoLink = "https://api.github.com/users/"+username+"/repos";
 let repoList = document.getElementById("repo-list");
 
-// fetch(repoLink).then(function(response) {
-//     return response.json();
-// }).then(function(data) {
-//     console.log(data);
-//     fetchedRepos = data;
-//     for (let repo = 0; repo < fetchedRepos.length; repo++) {
-//         const element = fetchedRepos[repo];
-//         let newFlexItem = document.createElement("div");
-//         newFlexItem.classList.add("flex-div-item");
-//         newFlexItem.addEventListener('click', (e) => {
-//             e.preventDefault();
-//             window.open(element.html_url, '_blank');
-//         });
-//         let repoName = document.createElement("div");
-//         repoName.style.fontWeight = "600";
-//         repoName.innerHTML = element.name;
-//         newFlexItem.append(repoName);
-//         let repoDesc = document.createElement("div");
-//         repoDesc.classList.add("repoDesc")
-//         repoDesc.innerHTML = element.description
-//         newFlexItem.append(repoDesc);
-//         repoList.append(newFlexItem);
-//     }
-// }).catch(function() {
-//     console.log("Unable to fetch repository information. Are you offline?");
-//     let newFlexItem = document.createElement("div");
-//     newFlexItem.classList.add("flex-div-item");
-//     newFlexItem.innerHTML = "Unable to Connect to api.github.com, Are you offline?";
-//     repoList.append(newFlexItem);
-// });
+fetch(repoLink).then(function(response) {
+    return response.json();
+}).then(function(data) {
+    console.log(data);
+    fetchedRepos = data;
+    for (let repo = 0; repo < fetchedRepos.length; repo++) {
+        const element = fetchedRepos[repo];
+        let newFlexItem = document.createElement("div");
+        newFlexItem.classList.add("flex-div-item");
+        newFlexItem.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open(element.html_url, '_blank');
+        });
+        let repoName = document.createElement("div");
+        repoName.style.fontWeight = "600";
+        repoName.innerHTML = element.name;
+        newFlexItem.append(repoName);
+        let repoDesc = document.createElement("div");
+        repoDesc.classList.add("repoDesc")
+        repoDesc.innerHTML = element.description
+        newFlexItem.append(repoDesc);
+        repoList.append(newFlexItem);
+    }
+}).catch(function() {
+    console.log("Unable to fetch repository information. Are you offline?");
+    let newFlexItem = document.createElement("div");
+    newFlexItem.classList.add("flex-div-item");
+    newFlexItem.innerHTML = "Unable to Connect to api.github.com, Are you offline?";
+    repoList.append(newFlexItem);
+});
 
 // -------------------- Other --------------------
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
+        e.stopPropagation();
         document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
         });
@@ -125,6 +155,7 @@ class CanvasFrame {
         this.canvas.height = height;
         this.c = canvasElement.getContext('2d');
         this.cObjects = [];
+        this.freeze = false;
         // resize canvas on window resize
         if (coverWindow) { // if true, canvas covers complete windows and resizes with it
             this.canvas.width = window.innerWidth;
@@ -144,17 +175,24 @@ class CanvasFrame {
     // initialize all objects here
     init() {
         // wave props
-        this.y = canvas.height/2;
+        this.y = this.canvas.height/2;
         this.resizer = 0.01;
         this.amplitude = 120;
         this.frequency = 0.01;
         this.color = 'hsl(15, 80%, 50%)';
         // anim props
-        this.increment = this.frequency;
+        this.increment = this.frequency + (Math.random()-0.5)*6;
+        this.firstRun = true;
     }
 
     // all object's update methods are called here
     animate() {
+        requestAnimationFrame(() => this.animate());
+
+        // don't run on mobile devices or when animation is paused except on first run
+        if (!this.firstRun && (this.freeze || window.innerWidth < 800)) return;
+        this.firstRun = false;
+
         let c = this.c;
         let canvas = this.canvas;
 
@@ -170,8 +208,6 @@ class CanvasFrame {
         c.strokeStyle = this.color;
         c.lineWidth = 3;
         c.stroke();
-
-        requestAnimationFrame(() => this.animate());
     }
 }
 
@@ -179,5 +215,6 @@ let canvas = document.getElementById('mainCanvas');
 let canvasFrame = new CanvasFrame(canvas, true);
 canvasFrame.init();
 canvasFrame.animate();
+window.addEventListener('click', () => canvasFrame.freeze = !canvasFrame.freeze);
 
 console.log("Canvas setup done!")

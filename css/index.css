@@ -6,15 +6,11 @@
  *      dark:   1b1b1b
  * Secondary: ff5200
  *      light:  ff863c
- *      dark:   c31200
+ *      dark:   c31b00
  * Text on primary and secondary: white & black
  * Background color: b3e5fc
  *
- * navs:
- * filter: drop-shadow(0.5rem 0.5rem 0.25rem rgb(27,27,27))
- * cards:
- * filter: drop-shadow(0.5rem 0.5rem 0.25rem rgb(27,27,27))
- * pages:
+ * custom element shadows:
  * filter: drop-shadow(0.5rem 0.5rem 0.25rem rgb(27,27,27))
  */
 
@@ -54,7 +50,7 @@ a {
     /* transform: skew(5deg); */
     background-color: #25252580;
     filter: drop-shadow(0.5rem 0.5rem 0.25rem rgb(27,27,27));
-    margin: 5rem 3rem;
+    margin: 9vh 5vw;
     margin-bottom: 0;
     border-radius: 0.5rem;
     border-radius: 0.6rem;
@@ -113,7 +109,7 @@ a {
     font-weight: bold;
     font-style: italic;
     padding: 0.2rem 0.5rem;
-    margin-top: 0.5rem;
+    margin-top: 2rem;
 }
 
 .subheading2 {
@@ -139,6 +135,121 @@ a {
     flex-direction: row;
 }
 
+.flex-col {
+    flex-direction: column;
+    align-content: center;
+}
+
+.flex-dual-item-small {
+    width: 18vw;
+    height: 1.5vh;
+    margin: 2vh 3vw;
+    padding: 0.8rem;
+    position: relative;
+    background-color: #ffa250;
+    transition: 0.5s ease;
+}
+
+.flex-dual-item-small:hover {
+    height: 3vh;
+    margin: 1vh 3vw;
+}
+
+.flex-dual-item-small:hover > .flex-item-small-content-end {
+    top: 0;
+    border-top: 6.5vh solid #c31b00;
+}
+
+.flex-dual-item-small:hover > .flex-item-small-caption-holder {
+    top: 0;
+    border-bottom: 6.5vh solid #c31b00;
+}
+
+.flex-dual-item-small:hover > .flex-item-small-content-cover {
+    top: 0;
+    height: 6.3vh;
+    width: 20vw;
+    background-color: #00000023;
+}
+
+.flex-item-small-caption-holder {
+    display: inline;
+    position: absolute;
+    top: -0.5vh;
+    left: -0.5vw;
+    width: 1vw;
+    border-bottom: 6.5vh solid #c31b00;
+    border-right: 1.5vw solid transparent;
+    filter: drop-shadow(0.3rem 0rem 0.2rem hsl(15, 0%, 20%));
+    transition: 0.5s ease;
+}
+
+.flex-item-small-content {
+    z-index: 1;
+    position: absolute;
+    top: 1.25vh;
+    left: 2.5vw;
+    height: inherit - 1vh;
+    color: #c31b00;
+    overflow: hidden;
+}
+
+.flex-item-small-content-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 4vh;
+    background-color: transparent;
+    border-bottom: 0.2rem solid lime;
+    border-top: 0.2rem solid lime;
+    box-sizing: border-box;
+    transition: 0.5s;
+}
+
+.flex-item-small-content-end {
+    display: inline;
+    position: absolute;
+    top: -0.5vh;
+    right: -0.5vw;
+    width: 1vw;
+    border-top: 6.5vh solid #c31b00;
+    border-left: 1.5vw solid transparent;
+    filter: drop-shadow(-0.3rem 0rem 0.2rem hsl(15, 0%, 20%));
+    transition: 0.5s ease;
+}
+
+.flex-dual-item {
+    width: 65vw;
+    height: 13vh;
+    position: relative;
+    background-color: #ffa250;
+    margin: 3vh;
+    transition: 0.5s ease;
+}
+
+.flex-dual-item:hover {
+    margin: 2vh;
+    height: 15vh;
+}
+
+.flex-dual-item:hover > .flex-item-content-end {
+    top: 0;
+    border-top: 15vh solid #c31b00;
+}
+
+.flex-dual-item:hover > .flex-item-caption-holder {
+    top: 0;
+    border-bottom: 15vh solid #c31b00;
+}
+
+.flex-dual-item:hover > .flex-item-content-cover {
+    top: 0;
+    width: inherit;
+    height: inherit;
+    background-color: #00000033;
+}
+
 .flex-div-item {
     width: 280px;
     height: 80px;
@@ -150,15 +261,17 @@ a {
     overflow: hidden;
     text-overflow: ellipsis;
     transition: 0.3s ease;
+    color: black;
 }
 
 .flex-div-item:hover {
     transform: scale(1.03);
     cursor: pointer;
+    color: white;
 }
 
 .flex-item-small {
-    background-color: #c31200;
+    background-color: #c31b00;
     color: white;
     width: 8rem;
     border-radius: 0.25rem;
@@ -178,8 +291,113 @@ a {
     transform: skew(5deg);
 }
 
+.flex-item-caption {
+    z-index: 1;
+    position: absolute;
+    top: 1.5vh;
+    left: 1.2vw;
+    color: white;
+    width: 10vw;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.flex-item-content-head {
+    font-size: 1.1rem;
+    color: #c31b00;
+    font-weight: bold;
+}
+
+.flex-item-content-time {
+    font-size: 0.9rem;
+    padding-left: 2rem;
+    color: #c31200b9;
+    margin: 0.2rem;
+}
+
+.flex-item-content-description {
+    color: #c31b00;
+}
+
+.flex-item-caption-holder {
+    display: inline;
+    position: absolute;
+    top: -1vh;
+    left: -0.5vw;
+    width: 12vw;
+    border-bottom: 16vh solid #c31b00;
+    border-right: 5vw solid transparent;
+    filter: drop-shadow(0.3rem 0rem 0.2rem hsl(15, 0%, 20%));
+    transition: 0.5s ease;
+}
+
+.flex-item-content {
+    z-index: 1;
+    position: absolute;
+    top: 1vh;
+    left: 17vw;
+    color: #c31b00;
+    max-width: 45vw;
+    overflow: hidden;
+}
+
+.flex-item-content-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 12vh;
+    background-color: transparent;
+    border-bottom: 0.2rem solid lime;
+    border-top: 0.2rem solid lime;
+    box-sizing: border-box;
+    transition: 1s;
+}
+
+.flex-item-content-end {
+    display: inline;
+    position: absolute;
+    width: 0.5vw;
+    top: -1vh;
+    right: -0.5vw;
+    border-top: 16vh solid #c31b00;
+    border-left: 4.5vw solid transparent;
+    filter: drop-shadow(-0.3rem 0rem 0.2rem hsl(15, 0%, 20%));
+    transition: 0.5s ease;
+}
+
 .repoDesc {
     overflow: hidden;
     text-overflow: ellipsis;
     height: 70%;
+}
+
+.direct {
+    color: #2a2aff;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+#contact-div {
+    margin-bottom: 20vh;
+}
+
+.flex-div-image {
+    margin: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.flex-item-image {
+    width: 8rem;
+    height: 8rem;
+    transition: 0.3s ease;
+}
+
+.flex-item-image:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }
